@@ -476,8 +476,6 @@ router.post('/sessions/cleanup', async (req, res) => {
  *               platform:
  *                 type: string
  *                 enum: [twitter, instagram, linkedin]
- *               sessionId:
- *                 type: string
  *     responses:
  *       200:
  *         description: Login test completed
