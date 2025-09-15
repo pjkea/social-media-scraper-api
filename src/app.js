@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
 const logger = require('./utils/logger');
-const errorHandler = require('./middleware/errorHandler');
+const { errorHandler} = require('./middleware/errorHandler');
 const scraperRoutes = require('./routes/scraper');
 const healthRoutes = require('./routes/health');
 
@@ -24,7 +24,7 @@ const swaggerOptions = {
             description: 'A comprehensive API for scraping social media posts from various platforms including Twitter, Instagram, and LinkedIn.',
             contact: {
                 name: 'API Support',
-                url: 'https://github.com/yourusername/social-media-scraper-api',
+                url: 'https://github.com/pjkea/social-media-scraper-api',
                 email: 'support@example.com'
             },
             license: {

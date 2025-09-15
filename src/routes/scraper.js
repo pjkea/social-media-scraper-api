@@ -224,15 +224,15 @@ router.post('/scrape/credentials', scrapeLimit, validateScrapeRequest, async (re
  *                         type: string
  *                         example: "twitter"
  *                       email:
- type: string
- example: "user@example.com"
- lastLogin:
- type: string
- format: date-time
- example: "2023-11-04T10:30:00.000Z"
- size:
- type: string
- example: "25.6 MB"
+ *                         type: string
+ *                         example: "user@example.com"
+ *                       lastLogin:
+ *                         type: string
+ *                         format: date-time
+ *                         example: "2023-11-04T10:30:00.000Z"
+ *                       size:
+ *                         type: string
+ *                         example: "25.6 MB"
  */
 router.get('/sessions', async (req, res) => {
     try {
