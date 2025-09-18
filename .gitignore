@@ -1,2 +1,32 @@
-/.idea/
-/node_modules/
+# Dependencies
+node_modules/
+package-lock.json
+
+# Runtime data
+logs/
+sessions/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+coverage/
+
+# Cache
+.npm/
+.cache/
