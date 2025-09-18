@@ -14,8 +14,8 @@ const scraperConfigs = {
             postStats: '[role="group"]'
         },
         alternativeSelectors: {
-            posts: 'article[data-testid="tweet"], [data-testid="cellInnerDiv"]',
-            postText: '[data-testid="tweetText"], .tweet-text, .css-901oao',
+            posts: 'article[role="article"], [data-testid="tweet"], .tweet',
+            postText: '[data-testid="tweetText"], .tweet-text, [lang]',
             postDate: 'time, [data-testid="Time"]',
             postAuthor: '[data-testid="User-Names"] a, .username, [data-testid="User-Name"]'
         }

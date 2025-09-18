@@ -31,11 +31,11 @@ const scrapeRequestSchema = Joi.object({
         }),
 
     platform: Joi.string()
-        .valid('twitter', 'instagram', 'linkedin')
+        .valid('twitter', 'facebook')
         .insensitive()
         .required()
         .messages({
-            'any.only': 'Platform must be one of: twitter, instagram, linkedin',
+            'any.only': 'Platform must be one of: twitter, facebook',
             'any.required': 'Platform is required'
         }),
 
@@ -91,8 +91,7 @@ const validateScrapeRequest = (req, res, next) => {
         // Validate platform-specific requirements
         const platformRequirements = {
             twitter: { requiresPassword: false },
-            instagram: { requiresPassword: true },
-            linkedin: { requiresPassword: true }
+            facebook: { requiresPassword: true }
         };
 
         const requirement = platformRequirements[value.platform.toLowerCase()];

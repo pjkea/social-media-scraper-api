@@ -27,11 +27,11 @@ function parseTimeframe(timeframe) {
  * @returns {string} Platform name
  */
 function detectPlatform(url) {
-    if (url.includes('twitter.com') || url.includes('x.com')) return 'twitter';
-    if (url.includes('instagram.com')) return 'instagram';
-    if (url.includes('linkedin.com')) return 'linkedin';
-    if (url.includes('facebook.com')) return 'facebook';
-    if (url.includes('tiktok.com')) return 'tiktok';
+    if (url.includes('twitter.com') || url.includes('x.com')) {return 'twitter';}
+    if (url.includes('instagram.com')) {return 'instagram';}
+    if (url.includes('linkedin.com')) {return 'linkedin';}
+    if (url.includes('facebook.com')) {return 'facebook';}
+    if (url.includes('tiktok.com')) {return 'tiktok';}
     return 'unknown';
 }
 
@@ -184,7 +184,7 @@ function parseStats(statsText, platform = 'unknown') {
  * @returns {string} Cleaned text
  */
 function cleanText(text) {
-    if (!text || typeof text !== 'string') return '';
+    if (!text || typeof text !== 'string') {return '';}
 
     return text
         .trim()
@@ -200,7 +200,7 @@ function cleanText(text) {
  * @returns {Date|null} Parsed date or null if invalid
  */
 function parseDate(dateStr) {
-    if (!dateStr) return null;
+    if (!dateStr) {return null;}
 
     // Common date formats from social media platforms
     const formats = [
@@ -218,7 +218,7 @@ function parseDate(dateStr) {
     ];
 
     // Try to parse as ISO date first
-    let date = new Date(dateStr);
+    const date = new Date(dateStr);
     if (!isNaN(date.getTime())) {
         return date;
     }
@@ -322,7 +322,7 @@ function extractUsernameFromUrl(url) {
  * @returns {string} Sanitized text
  */
 function sanitizeText(text) {
-    if (!text || typeof text !== 'string') return '';
+    if (!text || typeof text !== 'string') {return '';}
 
     return text
         .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags

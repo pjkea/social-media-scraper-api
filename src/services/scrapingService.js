@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const logger = require('../utils/logger');
-const { scraperConfigs } = require('../config/scraperConfig');
+const { scraperConfigs } = require('../config/scraperConfigs');
 const { parseTimeframe, detectPlatform, parseStats } = require('../utils/scraperUtils');
 
 class ScrapingService {
@@ -212,7 +212,7 @@ class ScrapingService {
                 // Extract post data with error handling for each field
                 const postData = await this.extractSinglePost(page, post, config, i);
 
-                if (!postData) continue;
+                if (!postData) {continue;}
 
                 // Parse and validate date
                 const postDate = new Date(postData.dateStr);
@@ -436,7 +436,7 @@ class ScrapingService {
                     const textElement = await postElement.$(selector);
                     if (textElement) {
                         text = await page.evaluate(el => el.textContent?.trim() || '', textElement);
-                        if (text) break;
+                        if (text) {break;}
                     }
                 } catch (e) { continue; }
             }
@@ -469,7 +469,7 @@ class ScrapingService {
                 } catch (e) { continue; }
             }
 
-            if (!postDate || postDate < cutoffDate) return null;
+            if (!postDate || postDate < cutoffDate) {return null;}
 
             // Extract author
             let author = '';
@@ -478,7 +478,7 @@ class ScrapingService {
                     const authorElement = await postElement.$(selector);
                     if (authorElement) {
                         author = await page.evaluate(el => el.textContent?.trim() || '', authorElement);
-                        if (author) break;
+                        if (author) {break;}
                     }
                 } catch (e) { continue; }
             }
@@ -706,7 +706,7 @@ class ScrapingService {
                     const textElement = await postElement.$(selector);
                     if (textElement) {
                         text = await page.evaluate(el => el.textContent?.trim() || '', textElement);
-                        if (text) break;
+                        if (text) {break;}
                     }
                 } catch (e) { continue; }
             }
@@ -727,13 +727,13 @@ class ScrapingService {
 
                         if (dateStr) {
                             postDate = new Date(dateStr);
-                            if (!isNaN(postDate.getTime())) break;
+                            if (!isNaN(postDate.getTime())) {break;}
                         }
                     }
                 } catch (e) { continue; }
             }
 
-            if (!postDate || postDate < cutoffDate) return null;
+            if (!postDate || postDate < cutoffDate) {return null;}
 
             // Extract author
             let author = '';
@@ -742,7 +742,7 @@ class ScrapingService {
                     const authorElement = await postElement.$(selector);
                     if (authorElement) {
                         author = await page.evaluate(el => el.textContent?.trim() || '', authorElement);
-                        if (author) break;
+                        if (author) {break;}
                     }
                 } catch (e) { continue; }
             }
@@ -776,7 +776,7 @@ class ScrapingService {
         try {
             // Instagram stats are often in buttons or spans
             const statsContainer = await postElement.$('section, .stats');
-            if (!statsContainer) return {};
+            if (!statsContainer) {return {};}
 
             const statsText = await page.evaluate(el => el.textContent, statsContainer);
             return this.parseStats(statsText, 'instagram');

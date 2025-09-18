@@ -7,8 +7,9 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
 const logger = require('./utils/logger');
-const { errorHandler} = require('./middleware/errorHandler');
+const {errorHandler} = require('./middleware/errorHandler');
 const scraperRoutes = require('./routes/scraper');
+const enhancedRoutes = require('./routes/enhancedScraper');
 const healthRoutes = require('./routes/health');
 
 const app = express();
@@ -24,7 +25,7 @@ const swaggerOptions = {
             description: 'A comprehensive API for scraping social media posts from various platforms including Twitter, Instagram, and LinkedIn.',
             contact: {
                 name: 'API Support',
-                url: 'https://github.com/pjkea/social-media-scraper-api',
+                url: 'https://github.com/yourusername/social-media-scraper-api',
                 email: 'support@example.com'
             },
             license: {
@@ -201,6 +202,7 @@ app.get('/api/docs.json', (req, res) => {
 // Routes
 app.use('/api', healthRoutes);
 app.use('/api', scraperRoutes);
+app.use('/api', enhancedRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -209,7 +211,7 @@ app.get('/', (req, res) => {
         version: '1.0.0',
         documentation: '/api/docs',
         health: '/api/health',
-        supportedPlatforms: ['twitter', 'instagram', 'linkedin', 'facebook', 'threads', 'tiktok', 'youtube', 'pinterest']
+        supportedPlatforms: ['twitter', 'facebook']
     });
 });
 
@@ -217,7 +219,7 @@ app.get('/', (req, res) => {
 app.use(errorHandler);
 
 // 404 handler
-app.use('*', (req, res) => {
+app.use('/*path', (req, res) => {
     res.status(404).json({
         success: false,
         error: 'Endpoint not found',

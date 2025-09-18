@@ -45,7 +45,7 @@ const router = express.Router();
  *                   type: array
  *                   items:
  *                     type: string
- *                   example: ["twitter", "instagram", "linkedin"]
+ *                   example: ["twitter", "facebook"]
  */
 router.get('/health', (req, res) => {
     const healthInfo = {
@@ -54,7 +54,7 @@ router.get('/health', (req, res) => {
         uptime: process.uptime(),
         environment: process.env.NODE_ENV || 'development',
         version: process.env.npm_package_version || '1.0.0',
-        supportedPlatforms: ['twitter', 'instagram', 'linkedin', 'facebook', 'threads', 'tiktok', 'youtube', 'pinterest']
+        supportedPlatforms: ['twitter', 'facebook']
     };
 
     res.json(healthInfo);
@@ -139,7 +139,7 @@ router.get('/health', (req, res) => {
 router.get('/health/detailed', (req, res) => {
     const formatBytes = (bytes) => {
         const gb = bytes / (1024 ** 3);
-        if (gb >= 1) return `${gb.toFixed(2)} GB`;
+        if (gb >= 1) {return `${gb.toFixed(2)} GB`;}
         const mb = bytes / (1024 ** 2);
         return `${mb.toFixed(1)} MB`;
     };
@@ -173,7 +173,7 @@ router.get('/health/detailed', (req, res) => {
                 external: formatBytes(memoryUsage.external)
             }
         },
-        supportedPlatforms: ['twitter', 'instagram', 'linkedin']
+        supportedPlatforms: ['twitter', 'instagram', 'linkedin', 'facebook', 'threads', 'tiktok', 'youtube', 'pinterest']
     };
 
     res.json(healthInfo);
