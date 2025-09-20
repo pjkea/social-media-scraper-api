@@ -14,7 +14,7 @@ const healthRoutes = require('./routes/health');
 const analysisRoutes = require('./routes/analysis');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_PORT || 3000;
 
 // Swagger configuration
 const swaggerOptions = {

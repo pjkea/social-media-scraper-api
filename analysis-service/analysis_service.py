@@ -471,6 +471,10 @@ class SocialMediaAnalyzer:
         }
 
 
+# Load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+
 # Flask Application
 app = Flask(__name__)
 CORS(app)
@@ -628,12 +632,18 @@ def batch_analyze_endpoint():
         }), 500
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+    # Use FLASK_PORT if available, otherwise default to 5000
+    port = int(os.getenv('FLASK_PORT', os.getenv('PORT', 5000)))
     debug = os.getenv('FLASK_ENV') == 'development'
 
     print(f"Starting Social Media Analysis Service on port {port}")
     print(f"Debug mode: {debug}")
     print(f"Gemini API configured: {GEMINI_API_KEY is not None}")
+
+    # Ensure we're not using port 3000 (Node.js default)
+    if port == 3000:
+        print("Warning: Port 3000 detected, switching to 5000 to avoid Node.js conflict")
+        port = 5000
 
     app.run(host='0.0.0.0', port=port, debug=debug)
 
