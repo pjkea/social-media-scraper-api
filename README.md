@@ -38,7 +38,7 @@ A comprehensive Node.js API for scraping social media posts from Twitter, Instag
 
 3. **Environment setup**
    ```bash
-   cp .env.example .env
+   cp .env .env
    # Edit .env file with your configuration
    ```
 

@@ -11,6 +11,7 @@ const {errorHandler} = require('./middleware/errorHandler');
 const scraperRoutes = require('./routes/scraper');
 const enhancedRoutes = require('./routes/enhancedScraper');
 const healthRoutes = require('./routes/health');
+const analysisRoutes = require('./routes/analysis');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -203,6 +204,8 @@ app.get('/api/docs.json', (req, res) => {
 app.use('/api', healthRoutes);
 app.use('/api', scraperRoutes);
 app.use('/api', enhancedRoutes);
+app.use('/api/analysis', analysisRoutes);
+app.use('/api', analysisRoutes); // For backwards compatibility
 
 // Root endpoint
 app.get('/', (req, res) => {

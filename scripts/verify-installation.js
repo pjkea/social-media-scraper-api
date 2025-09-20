@@ -116,9 +116,9 @@ async function verifyInstallation() {
         const envFile = path.join('.', '.env');
 
         if (await fs.pathExists(envExample)) {
-            console.log('  ✅ .env.example exists');
+            console.log('  ✅ .env exists');
         } else {
-            console.log('  ❌ .env.example missing');
+            console.log('  ❌ .env missing');
             allGood = false;
         }
 
@@ -137,8 +137,8 @@ async function verifyInstallation() {
                 }
             }
         } else {
-            console.log('  ⚠️  .env file not found (copy from .env.example)');
-            console.log('    Run: cp .env.example .env');
+            console.log('  ⚠️  .env file not found (copy from .env)');
+            console.log('    Run: cp .env .env');
         }
     }
 
@@ -208,7 +208,7 @@ async function suggestFixes() {
     console.log('   npm install --legacy-peer-deps');
     console.log('');
     console.log('2. Create environment file:');
-    console.log('   cp .env.example .env');
+    console.log('   cp .env .env');
     console.log('');
     console.log('3. Create required directories:');
     console.log('   mkdir -p sessions logs tests');
