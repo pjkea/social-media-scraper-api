@@ -10,6 +10,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
 
+# Load environment variables from parent directory .env file
+from dotenv import load_dotenv
+# Look for .env file in parent directory (project root)
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+# Also try current directory as fallback
+load_dotenv()
+
 # Import your existing analyzer classes
 class RiskLevel(Enum):
     LOW = "low"
@@ -474,6 +481,22 @@ if not GEMINI_API_KEY:
     print("Warning: GEMINI_API_KEY not set. Analysis service will not function properly.")
 
 analyzer = SocialMediaAnalyzer(GEMINI_API_KEY) if GEMINI_API_KEY else None
+
+@app.route('/', methods=['GET'])
+def index():
+    """Root endpoint with service information"""
+    return jsonify({
+        'service': 'Social Media Analysis Service',
+        'version': '1.0.0',
+        'status': 'running',
+        'gemini_configured': GEMINI_API_KEY is not None,
+        'endpoints': {
+            'health': '/health',
+            'analyze': '/analyze (POST)',
+            'batch_analyze': '/analyze/batch (POST)'
+        },
+        'timestamp': datetime.now().isoformat()
+    })
 
 @app.route('/health', methods=['GET'])
 def health_check():
